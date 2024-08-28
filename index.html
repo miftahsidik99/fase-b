@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capaian Pembelajaran Fase B</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+        
+        #sidebar {
+            width: 250px;
+            background-color: #f1f1f1;
+            height: 100vh;
+            padding: 20px;
+            overflow-y: auto;
+        }
+        
+        #content {
+            flex: 1;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .sidebar-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            text-align: left;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .sidebar-button:hover {
+            background-color: #45a049;
+        }
+        
+        iframe {
+            flex: 1;
+            width: 100%;
+            border: none;
+            min-height: 500px;
+        }
+        
+        .show-table-button {
+            display: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+        
+        .modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        .buat-tp-atp-button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        
+        .buat-tp-atp-button:hover {
+            background-color: #45a049;
+        }
+        
+        #homeButton {
+            background-color: #f44336;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-bottom: 20px;
+        }
+        
+        #homeButton:hover {
+            background-color: #d32f2f;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="sidebar">
+        <button id="homeButton" onclick="goToHome()">Home</button>
+        <h2>Capaian Pembelajaran Fase B</h2>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1xtY6_fqLKFasn-xM9x7aagFZNvcp_zAvA2BBb3tCRt0/edit?usp=sharing')">CP Bahasa Indonesia Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1VVFaQ4SE8gp7N5pIutQBpCaA3JzCUc6rueWwChMnH1k/edit?usp=sharing')">CP PAIBP Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1YZ3mC-OM-fv5FyM9QHslNaqH_L3CD_LpwhxkGeOc_LQ/edit?usp=sharing')">CP Bahasa Inggris Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1biug-ixsY5vwLVhiYvDpJjfrTz4T5gbXxAaqL3WnAuA/edit?usp=sharing')">CP Matematika Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1fvZhXtnPeSt5GuNTDlOW07-zKuORUO_t-bHUZQCQ5rQ/edit?usp=sharing')">CP PJOK Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1oqEuTABwFGTl-_cPFZadHaRwjtp0u81Mc4TOH0nE9QY/edit?usp=sharing')">CP IPAS Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1qNtNGRHzRijsHUsOY9vQ6n_dSPWRa-IHtQMdxG60ReQ/edit?usp=sharing')">CP Seni Rupa Fase B</button>
+        <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/14fg9-ZVnon6v9-dkvOdxctQ4caEQeyMGIaQ8Nb3vDEg/edit?usp=sharing')">CP Bahasa Pancasila Fase B</button>
+    </div>
+    <div id="content">
+        <iframe id="document-frame" src=""></iframe>
+        <a href="https://miftahsidik99.github.io/ai-tp/" target="_blank" class="buat-tp-atp-button">Buat TP Dan ATP</a>
+    </div>
+
+    <script>
+        let currentDocId = '';
+        const docData = {
+            '14fg9-ZVnon6v9-dkvOdxctQ4caEQeyMGIaQ8Nb3vDEg': {
+                mataPelajaran: 'Bahasa Indonesia',
+                elemen: ['Menyimak', 'Membaca', 'Berbicara', 'Menulis'],
+                capaian: [
+                    'Peserta didik mampu menyimak dan memahami informasi dari berbagai jenis teks yang dibacakan atau melalui media digital.',
+                    'Peserta didik mampu membaca berbagai jenis teks dengan lancar dan memahami isinya.',
+                    'Peserta didik mampu berbicara dengan jelas dan santun dalam berbagai konteks.',
+                    'Peserta didik mampu menulis berbagai jenis teks sederhana dengan memperhatikan tujuan dan sasaran pembaca.'
+                ]
+            },
+            // Tambahkan data untuk dokumen lainnya di sini
+        };
+
+        function loadContent(url) {
+            document.getElementById('document-frame').src = url;
+            currentDocId = extractDocId(url);
+        }
+
+        function extractDocId(url) {
+            const match = url.match(/\/d\/(.*?)\//);
+            return match ? match[1] : null;
+        }
+
+        function goToHome() {
+            window.location.href = 'home.html';
+        }
+    </script>
+</body>
+
+</html>
