@@ -125,24 +125,39 @@
             background-color: #45a049;
         }
         
-        #homeButton {
-            background-color: #f44336;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            cursor: pointer;
+        .btn-home {
+            display: block;
+            width: 100%;
+            padding: 12px;
             margin-bottom: 20px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            text-align: center;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
-        
-        #homeButton:hover {
-            background-color: #d32f2f;
+
+        .btn-home:hover {
+            background-color: #0056b3;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-home:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
 
 <body>
     <div id="sidebar">
-        <button id="homeButton" onclick="goToHome()">Home</button>
+        <a href="https://miftahsidik99.github.io/home-web/" class="btn-home">Home</a>
         <h2>Capaian Pembelajaran Fase B</h2>
         <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1xtY6_fqLKFasn-xM9x7aagFZNvcp_zAvA2BBb3tCRt0/edit?usp=sharing')">CP Bahasa Indonesia Fase B</button>
         <button class="sidebar-button" onclick="loadContent('https://docs.google.com/document/d/1VVFaQ4SE8gp7N5pIutQBpCaA3JzCUc6rueWwChMnH1k/edit?usp=sharing')">CP PAIBP Fase B</button>
@@ -182,10 +197,6 @@
         function extractDocId(url) {
             const match = url.match(/\/d\/(.*?)\//);
             return match ? match[1] : null;
-        }
-
-        function goToHome() {
-            window.location.href = 'home.html';
         }
     </script>
 </body>
